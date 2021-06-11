@@ -1,0 +1,9 @@
+@use "sass:color";
+
+.presentation__button {
+    @include btn-presentation;
+}
+
+.step-btn {
+    @include btn-steps;
+}

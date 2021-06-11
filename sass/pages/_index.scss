@@ -1,0 +1,166 @@
+@use "sass:color";
+
+
+.heading {
+
+    .localisation {
+        background: #e8e8e8;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: inset 0px 10px 5px rgba(175, 175, 175, 0.5);
+
+        p {
+            padding-left: 20px;
+        }
+
+        .fas {
+            color: initial;
+
+        }
+
+    }
+
+    .presentation {
+        height: 250px;
+        display: flex;
+        padding: 50px 30px;
+        flex-direction: column;
+        align-items: center;
+        background: #f9f9f9;
+        justify-content: center;
+        text-align: center;
+
+        &>p {
+            font-weight: 300;
+        }
+
+        h2,
+        &>p,
+        &__button {
+            margin: 10px 0;
+        }
+    }
+
+}
+
+.steps {
+    @include shared-index-footer;
+    justify-content: center;
+
+    &__title {
+        h3 {
+            margin: 0;
+        }
+
+        @include shared-title-index-footer;
+        padding: 50px 0 0 30px;
+        justify-content: flex-start;
+    }
+
+    &__list {
+        list-style: none;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.items {
+    background: #f9f9f9;
+    padding: 50px 20px;
+    font-weight: 200;
+
+    &__title h3 {
+        margin: 0;
+    }
+
+    .item {
+        overflow: hidden;
+        border-radius: 20px;
+        width: 100%;
+        position: relative;
+        background: #FFF;
+        margin: 20px auto;
+        @include button-boxShadow(.30);
+        @include shared-index-footer;
+
+        &__img {
+            display: flex;
+            align-items: center;
+            height: 230px;
+            overflow: hidden;
+        }
+
+        a:visited h4 {
+            color: $color-primary;
+        }
+
+        &__description {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            a {
+                text-decoration: none;
+            }
+
+            * {
+                margin: 0;
+            }
+
+            .far {
+                font-size: 1.6em;
+                width: 30px;
+
+            }
+
+            .far:hover {
+                font-weight: unset;
+                background: -webkit-gradient(linear, right top, right bottom, from($color-primary), to($color-secondary));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                display: initial;
+                cursor: pointer;
+            }
+
+        }
+
+
+        &__flag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: $color-tertiary;
+            border-radius: 5px;
+            padding: 5px 15px;
+            margin: 5px;
+            color: color.scale($color-tertiary, $lightness: -60%, $saturation: 30%);
+
+            p {
+                margin: 0;
+                font-size: smaller;
+                font-weight: 600;
+            }
+        }
+    }
+
+
+
+    &__title {
+        @include shared-title-index-footer;
+
+    }
+
+    img {
+        width: 100%;
+    }
+}

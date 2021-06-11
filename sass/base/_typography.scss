@@ -1,0 +1,29 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+h1,
+.footer .nav__title {
+    font-family: 'Shrikhand', cursive;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2,
+h3:not(.footer .nav__title>h3) {
+    font-weight: 700;
+    font-size: 1.4em;
+    line-height: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+    color: initial;
+}
