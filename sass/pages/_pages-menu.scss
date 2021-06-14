@@ -1,0 +1,56 @@
+@use "sass:math";
+
+.menu {
+    background: #f9f9f9;
+    @include menu;
+
+    &__heading--bckgd-img1 {
+        @include background-image-1;
+    }
+
+    &__heading--bckgd-img2 {
+        @include background-image-2;
+    }
+
+    &__dish {
+        @include menu-dish;
+
+        .title {
+            @include menu-dish-title;
+        }
+
+        .item {
+            @include menu-dish-item;
+
+            @include menu-dish-item-animation;
+        }
+
+        @for $i from 1 through 4 {
+            .item--anim#{$i} {
+                $n: $i - (0.7s * $i);
+                @include menu-dish-item-animation;
+                animation-delay: $n;
+            }
+        }
+
+    }
+
+    &__bottom {
+        display: flex;
+        padding: 80px 0;
+        width: 100%;
+        background: #f9f9f9;
+    }
+
+    &__button {
+
+        @include mobile-only {
+            margin: 100px auto;
+        }
+    }
+
+    &__button::after {
+        content: 'Commander';
+    }
+
+}

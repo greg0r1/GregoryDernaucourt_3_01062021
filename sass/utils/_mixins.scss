@@ -6,11 +6,23 @@
     }
 }
 
+@mixin tablet-only {
+    @media screen and (min-width: map-get($breakpoints, tablet)) and (max-width: map-get($breakpoints, desktop)) {
+        @content;
+    }
+}
+
+@mixin desktop-only {
+    @media screen and (min-width: map-get($breakpoints, desktop)) {
+        @content;
+    }
+}
+
 @mixin button-boxShadow($a-rgb) {
     box-shadow: 0px 6px 10px rgba(175, 175, 175, $a-rgb);
 }
 
-@mixin shared-index-footer {
+@mixin shared-index {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -19,18 +31,24 @@
 }
 
 @mixin shared-title-index-footer {
-    width: 100%;
     display: flex;
-    justify-content: flex-start;
+
+    @include mobile-only() {
+        justify-content: flex-start;
+    }
 }
 
-@mixin btn-presentation {
+@mixin btn-primary {
     text-decoration: none;
-    padding: 14px 21px;
+    padding: 14px 50px;
     background: linear-gradient(0deg, $color-primary, $color-secondary);
     @include button-boxShadow($boxShadow);
     border-radius: 50px;
     color: #FFF;
+    margin: auto;
+    min-width: 200px;
+    text-align: center;
+    transition: background-color 2s;
 
     &:hover {
         background: linear-gradient(180deg, $color-primary, $color-secondary);
@@ -46,8 +64,7 @@
 @mixin btn-steps {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 300px;
+    justify-content: flex-start;
     margin: 20px;
     position: relative;
     background: #f9f9f9;
@@ -56,6 +73,15 @@
     @include button-boxShadow(.30);
     transform: scale(1);
     transition: transform 2s ease-out;
+
+    @include mobile-only {
+        width: 100%;
+    }
+
+    @include tablet-only {
+        width: 300px;
+    }
+
 
     &,
     &:hover {
@@ -68,7 +94,7 @@
         background: color.scale($color-primary, $lightness: 90%);
         transform: scale(1.05);
         font-weight: 500;
-        transition: transform 500ms cubic-bezier(0.17, 0.26, 0.29, 0.98);
+        transition: all 500ms cubic-bezier(0.17, 0.26, 0.29, 0.98);
 
         .fas {
             color: $color-primary;
@@ -76,7 +102,7 @@
     }
 
     .fas {
-        margin: 0 10px;
+        margin: 0 30px;
         color: color.scale(#000, $lightness: 50%);
         font-size: larger;
     }
@@ -102,4 +128,209 @@
     p {
         margin: 0;
     }
+}
+
+@mixin like {
+    .fa {
+        appearance: none;
+    }
+
+    .far {
+        font-size: 1.6em;
+        width: 30px;
+        margin: 20px;
+        padding: 2px;
+    }
+
+    .far:hover,
+    .far:focus {
+        font-weight: 700;
+        background: -webkit-gradient(linear, right top, right bottom, from($color-primary), to($color-secondary));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        cursor: pointer;
+    }
+}
+
+@mixin breakpoint-shared {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+@mixin background-image-1 {
+    background: no-repeat center/100% url('/public/img/restaurants/small/menu-aLaFrançaise.jpg');
+}
+
+@mixin background-image-2 {
+    background: no-repeat center/100% url('/public/img/restaurants/small/menu-laNoteEnchantee.jpg');
+}
+
+@mixin menu {
+    display: flex;
+    flex-direction: column;
+
+    @include tablet-only {
+        @include breakpoint-shared;
+    }
+
+    @include desktop-only {
+        @include breakpoint-shared;
+    }
+
+
+    &__heading {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 350px;
+        width: 100%;
+
+        .title {
+            background: #f9f9f9;
+            border-radius: 50px 50px 0 0;
+            padding: 30px 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            @include like;
+        }
+
+    }
+
+}
+
+@mixin menu-dish {
+    background: #f9f9f9;
+    padding: 0 30px;
+    max-width: 500px;
+}
+
+@mixin menu-dish-title {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 10px;
+
+    h3 {
+        margin: 10px 0;
+        font-size: 1.1em;
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+
+    span {
+        width: 50px;
+        height: 4px;
+        background: $color-tertiary;
+    }
+}
+
+@mixin menu-dish-item {
+    opacity: 0;
+    display: flex;
+    background: #fff;
+    border-radius: 20px;
+    padding: 0;
+    margin: 20px auto;
+    overflow: hidden;
+    @include button-boxShadow($boxShadow);
+
+
+    &>a {
+        text-decoration: none;
+        color: initial;
+        width: 100%;
+        margin: 10px 20px;
+    }
+
+    a>div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    a:focus+.checkbox {
+        transform: scaleX(1);
+        width: 100px;
+        transition: all 1s ease-in-out;
+        animation-fill-mode: forwards;
+    }
+
+    .checkbox {
+        transition: all 1s ease-in-out;
+        width: 0;
+        background: $color-tertiary;
+        border-radius: 0 20px 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+
+        input {
+            display: flex;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #FFF;
+            border-radius: 50%;
+        }
+
+        input::after {
+            font-family: "Font Awesome 5 Free";
+            content: '\f00c';
+            color: $color-tertiary;
+            font-weight: 900;
+            font-size: initial;
+            margin: auto;
+        }
+
+    }
+
+    &__description {
+        overflow: hidden;
+
+        p {
+            margin: 1px;
+            font-weight: 300;
+            cursor: pointer;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        h4 {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin: 1px;
+            white-space: nowrap;
+        }
+    }
+
+    &__price {
+        margin: 0;
+        align-self: flex-end;
+        font-weight: 600;
+    }
+
+
+}
+
+@mixin menu-dish-item-animation {
+    animation: slidein 500ms linear 1 forwards;
+
+    @keyframes slidein {
+        0% {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
 }
