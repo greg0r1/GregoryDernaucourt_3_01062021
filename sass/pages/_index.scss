@@ -73,7 +73,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         align-content: center;
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
         padding: 0;
         margin: 0;
@@ -121,11 +121,11 @@
         }
 
         @include tablet-only {
-            max-width: 85%;
+            width: 400px;
         }
 
         @include desktop-only {
-            max-width: 400px;
+            max-width: 350px;
         }
 
 
@@ -135,21 +135,15 @@
 
         &__img {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            align-content: flex-start;
             overflow: hidden;
+            height: 220px;
 
-            @include mobile-only {
-                height: 240px;
+            a {
+                display: flex;
+                justify-content: center;
             }
-
-            @include tablet-only {
-                height: 400px;
-            }
-
-            @include desktop-only {
-                height: 200px;
-            }
-
 
         }
 
@@ -195,10 +189,7 @@
 
     }
 
-
-
-
     img {
-        width: 105%;
+        width: 100%;
     }
 }

@@ -1,8 +1,17 @@
 @charset "UTF-8";
 body {
   margin: 0;
+  animation: shader 500ms linear;
 }
 
+@keyframes shader {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 p,
 h1,
 h2,
@@ -12,7 +21,7 @@ h3 {
 
 .items a:hover *,
 .footer a:hover * {
-  color: #FF79DA;
+  color: #99E2D0;
 }
 
 main {
@@ -37,43 +46,45 @@ h1,
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 1.9em;
 }
 
-h2,
-h3:not(.footer .nav__title > h3) {
+h2 {
   font-weight: 700;
   font-size: 1.4em;
   line-height: 1.2em;
 }
 
 h4 {
-  font-size: 1.2em;
+  font-size: 1.1em;
   color: initial;
   font-weight: 700;
 }
 
 .presentation__button,
-.menu__button {
+.bottom__button {
   text-decoration: none;
-  padding: 14px 50px;
-  background: linear-gradient(0deg, #9356DC, #FF79DA);
+  padding: 14px 24px;
+  background-image: linear-gradient(180deg, #9356DC, #FF79DA);
   box-shadow: 0px 6px 10px rgba(175, 175, 175, 0.45);
   border-radius: 50px;
   color: #FFF;
   margin: auto;
   min-width: 200px;
   text-align: center;
-  transition: background-color 2s;
+  transition: background-image 1s;
+  filter: brightness(1);
+  transition: filter 800ms ease-in-out;
 }
 .presentation__button:hover,
-.menu__button:hover {
-  background: linear-gradient(180deg, #9356DC, #FF79DA);
+.bottom__button:hover {
   color: #FFF;
   box-shadow: 0px 6px 10px #afafaf;
+  filter: brightness(1.2);
+  transition: filter 300ms linear;
 }
 .presentation__button p,
-.menu__button p {
+.bottom__button p {
   margin: 0;
 }
 
@@ -143,16 +154,16 @@ h4 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #99E2D0;
-  color: #FFF;
+  background: #FFF;
+  color: #9356DC;
   position: absolute;
   top: 0;
+  z-index: 1000;
   height: 100%;
   width: 100%;
   text-align: center;
-  height: 100%;
   line-height: 500px;
-  animation: 3s display100 2s forwards linear;
+  animation: 3s display100 3s linear forwards;
 }
 .loader-container .loader {
   width: 50px;
@@ -160,6 +171,10 @@ h4 {
   display: inline-block;
   vertical-align: middle;
   position: relative;
+}
+.loader-container span {
+  animation: 1s faderText 2s linear forwards;
+  animation-iteration-count: 1;
 }
 .loader-container .loader-quart {
   border-radius: 50px;
@@ -174,16 +189,18 @@ h4 {
   right: -6px;
   border-radius: 50px;
   border: 6px solid transparent;
-  border-top-color: #FFF;
-  animation: spin 1s cubic-bezier(0.31, 0.61, 0.4, 0.68) 0s infinite;
+  border-top-color: #9356DC;
+  animation: spin 2s cubic-bezier(0.31, 0.61, 0.4, 0.68) 0s infinite;
 }
 
 @keyframes spin {
   0% {
     transform: rotate(0deg);
+    opacity: 1;
   }
   100% {
     transform: rotate(360deg);
+    opacity: 0;
   }
 }
 @keyframes display100 {
@@ -192,7 +209,16 @@ h4 {
     opacity: 1;
   }
   100% {
-    height: 0;
+    height: 100%;
+    opacity: 0;
+    z-index: -1;
+  }
+}
+@keyframes faderText {
+  0% {
+    opacity: 1;
+  }
+  100% {
     opacity: 0;
   }
 }
@@ -200,6 +226,7 @@ h4 {
   display: flex;
   position: relative;
   justify-content: center;
+  padding: 5px;
 }
 .header__logo {
   margin: auto;
@@ -210,15 +237,29 @@ h4 {
   }
 }
 .header a {
-  color: initial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  color: #333333;
   position: absolute;
   top: 10px;
-  left: 30px;
+  left: 20px;
   font-size: 1.3em;
+  background-color: none;
+  transition: background-color 500ms ease-out;
+}
+.header a:hover {
+  background-color: #f2f2f2;
+  transition: background-color 500ms ease-out;
+  color: #4d4d4d;
 }
 
 .footer {
-  background: #2d2d2d;
+  background: #313131;
 }
 .footer .nav {
   padding: 50px;
@@ -315,7 +356,7 @@ h4 {
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   padding: 0;
   margin: 0;
@@ -371,12 +412,12 @@ h4 {
 }
 @media screen and (min-width: 600px) and (max-width: 1024px) {
   .items .item {
-    max-width: 85%;
+    width: 400px;
   }
 }
 @media screen and (min-width: 1024px) {
   .items .item {
-    max-width: 400px;
+    max-width: 350px;
   }
 }
 .items .item > div {
@@ -384,23 +425,14 @@ h4 {
 }
 .items .item__img {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  align-content: flex-start;
   overflow: hidden;
+  height: 220px;
 }
-@media screen and (max-width: 599px) {
-  .items .item__img {
-    height: 240px;
-  }
-}
-@media screen and (min-width: 600px) and (max-width: 1024px) {
-  .items .item__img {
-    height: 400px;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .items .item__img {
-    height: 200px;
-  }
+.items .item__img a {
+  display: flex;
+  justify-content: center;
 }
 .items .item a:visited h4 {
   color: #9356DC;
@@ -434,6 +466,15 @@ h4 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
+  animation: like-anim 1s ease-in forwards;
+}
+@keyframes like-anim {
+  from {
+    filter: opacity(0);
+  }
+  to {
+    filter: opacity(1);
+  }
 }
 .items .item__flag {
   position: absolute;
@@ -451,7 +492,7 @@ h4 {
   font-weight: 600;
 }
 .items img {
-  width: 105%;
+  width: 100%;
 }
 
 .menu {
@@ -486,7 +527,21 @@ h4 {
   padding: 30px 30px 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+}
+@media screen and (max-width: 599px) {
+  .menu__heading .title {
+    justify-content: space-between;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+  .menu__heading .title {
+    justify-content: space-around;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .menu__heading .title {
+    justify-content: center;
+  }
 }
 .menu__heading .title .fa {
   appearance: none;
@@ -505,25 +560,62 @@ h4 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
+  animation: like-anim 1s ease-in forwards;
+}
+@keyframes like-anim {
+  from {
+    filter: opacity(0);
+  }
+  to {
+    filter: opacity(1);
+  }
 }
 .menu__heading--bckgd-img1 {
   background: no-repeat center/100% url("/public/img/restaurants/small/menu-aLaFrançaise.jpg");
+  background-position-y: 0;
 }
 .menu__heading--bckgd-img2 {
   background: no-repeat center/100% url("/public/img/restaurants/small/menu-laNoteEnchantee.jpg");
 }
+.menu__heading--bckgd-img3 {
+  background: no-repeat center/100% url("/public/img/restaurants/small/menu-laPaletteDuGout.jpg");
+}
+.menu__heading--bckgd-img4 {
+  background: no-repeat center/100% url("/public/img/restaurants/small/menu-leDeliceDesSens.jpg");
+}
 .menu__dish {
   background: #f9f9f9;
-  padding: 0 30px;
-  max-width: 500px;
+  padding: 20px;
+}
+@media screen and (min-width: 1024px) {
+  .menu__dish {
+    flex-grow: 3;
+  }
 }
 .menu__dish .title {
   display: flex;
   flex-direction: column;
-  margin: 20px 10px;
+  width: 420px;
+  margin: auto;
+}
+@media screen and (max-width: 599px) {
+  .menu__dish .title {
+    margin: 20px 10px;
+    width: auto;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+  .menu__dish .title {
+    width: 500px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .menu__dish .title {
+    width: 420px;
+  }
 }
 .menu__dish .title h3 {
-  margin: 10px 0;
+  margin: 10px 0 2px;
   font-size: 1.1em;
   font-weight: 300;
   text-transform: uppercase;
@@ -536,27 +628,59 @@ h4 {
 .menu__dish .item {
   opacity: 0;
   display: flex;
-  background: #fff;
+  background-color: #fff;
   border-radius: 20px;
   padding: 0;
   margin: 20px auto;
   overflow: hidden;
+  box-sizing: border-box;
   box-shadow: 0px 6px 10px rgba(175, 175, 175, 0.45);
   animation: slidein 500ms linear 1 forwards;
+  animation-delay: 900ms;
 }
-.menu__dish .item > a {
+@media screen and (max-width: 599px) {
+  .menu__dish .item {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+  .menu__dish .item {
+    width: 500px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .menu__dish .item {
+    width: 420px;
+  }
+}
+@keyframes slidein {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.menu__dish .item > div {
+  display: flex;
   text-decoration: none;
   color: initial;
   width: 100%;
-  margin: 10px 20px;
+  cursor: pointer;
 }
-.menu__dish .item a > div {
+.menu__dish .item > div > div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.menu__dish .item a:focus + .checkbox {
-  transform: scaleX(1);
+.menu__dish .item .focus {
+  padding: 10px 15px;
+  width: 100%;
+  min-width: 0;
+}
+.menu__dish .item .focus:focus + .checkbox {
   width: 100px;
   transition: all 1s ease-in-out;
   animation-fill-mode: forwards;
@@ -570,6 +694,7 @@ h4 {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  margin: 0;
 }
 .menu__dish .item .checkbox input {
   display: flex;
@@ -609,18 +734,9 @@ h4 {
   align-self: flex-end;
   font-weight: 600;
 }
-@keyframes slidein {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 .menu__dish .item--anim1 {
   animation: slidein 500ms linear 1 forwards;
+  animation-delay: 900ms;
   animation-delay: 0.3s;
 }
 @keyframes slidein {
@@ -635,6 +751,7 @@ h4 {
 }
 .menu__dish .item--anim2 {
   animation: slidein 500ms linear 1 forwards;
+  animation-delay: 900ms;
   animation-delay: 0.6s;
 }
 @keyframes slidein {
@@ -649,6 +766,7 @@ h4 {
 }
 .menu__dish .item--anim3 {
   animation: slidein 500ms linear 1 forwards;
+  animation-delay: 900ms;
   animation-delay: 0.9s;
 }
 @keyframes slidein {
@@ -663,6 +781,7 @@ h4 {
 }
 .menu__dish .item--anim4 {
   animation: slidein 500ms linear 1 forwards;
+  animation-delay: 900ms;
   animation-delay: 1.2s;
 }
 @keyframes slidein {
@@ -675,18 +794,86 @@ h4 {
     transform: translateY(0);
   }
 }
-.menu__bottom {
+
+.bottom {
   display: flex;
-  padding: 80px 0;
+  flex-direction: column;
+  display: flex;
   width: 100%;
   background: #f9f9f9;
+  padding: 50px 0 100px;
 }
-@media screen and (max-width: 599px) {
-  .menu__button {
-    margin: 100px auto;
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+  .bottom {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
-.menu__button::after {
+@media screen and (min-width: 1024px) {
+  .bottom {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+.bottom__heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 350px;
+  width: 100%;
+}
+.bottom__heading .title {
+  background: #f9f9f9;
+  border-radius: 50px 50px 0 0;
+  padding: 30px 30px 0;
+  display: flex;
+  align-items: center;
+}
+@media screen and (max-width: 599px) {
+  .bottom__heading .title {
+    justify-content: space-between;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+  .bottom__heading .title {
+    justify-content: space-around;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .bottom__heading .title {
+    justify-content: center;
+  }
+}
+.bottom__heading .title .fa {
+  appearance: none;
+}
+.bottom__heading .title .far {
+  font-size: 1.6em;
+  width: 30px;
+  margin: 20px;
+  padding: 2px;
+}
+.bottom__heading .title .far:hover,
+.bottom__heading .title .far:focus {
+  font-weight: 700;
+  background: -webkit-gradient(linear, right top, right bottom, from(#9356DC), to(#FF79DA));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  animation: like-anim 1s ease-in forwards;
+}
+@keyframes like-anim {
+  from {
+    filter: opacity(0);
+  }
+  to {
+    filter: opacity(1);
+  }
+}
+.bottom__button::after {
   content: "Commander";
 }
 

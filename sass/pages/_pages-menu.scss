@@ -12,6 +12,14 @@
         @include background-image-2;
     }
 
+    &__heading--bckgd-img3 {
+        @include background-image-3;
+    }
+
+    &__heading--bckgd-img4 {
+        @include background-image-4;
+    }
+
     &__dish {
         @include menu-dish;
 
@@ -23,6 +31,89 @@
             @include menu-dish-item;
 
             @include menu-dish-item-animation;
+
+            &>div {
+                display: flex;
+                text-decoration: none;
+                color: initial;
+                width: 100%;
+                cursor: pointer;
+            }
+
+            &>div>div {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .focus {
+                padding: 10px 15px;
+                width: 100%;
+                min-width: 0;
+            }
+
+            .focus:focus+.checkbox {
+                width: 100px;
+                transition: all 1s ease-in-out;
+                animation-fill-mode: forwards;
+            }
+
+            .checkbox {
+                transition: all 1s ease-in-out;
+                width: 0;
+                background: $color-tertiary;
+                border-radius: 0 20px 20px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                margin: 0;
+
+                input {
+                    display: flex;
+                    appearance: none;
+                    width: 25px;
+                    height: 25px;
+                    background: #FFF;
+                    border-radius: 50%;
+                }
+
+                input::after {
+                    font-family: "Font Awesome 5 Free";
+                    content: '\f00c';
+                    color: $color-tertiary;
+                    font-weight: 900;
+                    font-size: initial;
+                    margin: auto;
+                }
+
+            }
+
+            &__description {
+                overflow: hidden;
+
+                p {
+                    margin: 1px;
+                    font-weight: 300;
+                    cursor: pointer;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+
+                h4 {
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    margin: 1px;
+                    white-space: nowrap;
+                }
+            }
+
+            &__price {
+                margin: 0;
+                align-self: flex-end;
+                font-weight: 600;
+            }
         }
 
         @for $i from 1 through 4 {
@@ -34,23 +125,16 @@
         }
 
     }
+}
 
-    &__bottom {
-        display: flex;
-        padding: 80px 0;
-        width: 100%;
-        background: #f9f9f9;
-    }
-
-    &__button {
-
-        @include mobile-only {
-            margin: 100px auto;
-        }
-    }
+.bottom {
+    @include menu;
+    display: flex;
+    width: 100%;
+    background: #f9f9f9;
+    padding: 50px 0 100px;
 
     &__button::after {
         content: 'Commander';
     }
-
 }

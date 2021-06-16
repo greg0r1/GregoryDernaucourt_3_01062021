@@ -1,7 +1,7 @@
 @use "sass:color";
 
 .presentation__button,
-.menu__button {
+.bottom__button {
     @include btn-primary;
 }
 

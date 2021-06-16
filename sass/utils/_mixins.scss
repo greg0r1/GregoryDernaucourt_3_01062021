@@ -40,20 +40,23 @@
 
 @mixin btn-primary {
     text-decoration: none;
-    padding: 14px 50px;
-    background: linear-gradient(0deg, $color-primary, $color-secondary);
+    padding: 14px 24px;
+    background-image: linear-gradient(180deg, $color-primary, $color-secondary);
     @include button-boxShadow($boxShadow);
     border-radius: 50px;
     color: #FFF;
     margin: auto;
     min-width: 200px;
     text-align: center;
-    transition: background-color 2s;
+    transition: background-image 1s;
+    filter: brightness(1);
+    transition: filter 800ms ease-in-out;
 
     &:hover {
-        background: linear-gradient(180deg, $color-primary, $color-secondary);
         color: #FFF;
         @include button-boxShadow(1);
+        filter: brightness(1.2);
+        transition: filter 300ms linear;
     }
 
     p {
@@ -150,6 +153,17 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         cursor: pointer;
+        animation: like-anim 1s ease-in forwards;
+    }
+
+    @keyframes like-anim {
+        from {
+            filter: opacity(0);
+        }
+
+        to {
+            filter: opacity(1);
+        }
     }
 }
 
@@ -162,10 +176,19 @@
 
 @mixin background-image-1 {
     background: no-repeat center/100% url('/public/img/restaurants/small/menu-aLaFrançaise.jpg');
+    background-position-y: 0;
 }
 
 @mixin background-image-2 {
     background: no-repeat center/100% url('/public/img/restaurants/small/menu-laNoteEnchantee.jpg');
+}
+
+@mixin background-image-3 {
+    background: no-repeat center/100% url('/public/img/restaurants/small/menu-laPaletteDuGout.jpg');
+}
+
+@mixin background-image-4 {
+    background: no-repeat center/100% url('/public/img/restaurants/small/menu-leDeliceDesSens.jpg');
 }
 
 @mixin menu {
@@ -188,13 +211,25 @@
         height: 350px;
         width: 100%;
 
+
         .title {
             background: #f9f9f9;
             border-radius: 50px 50px 0 0;
             padding: 30px 30px 0;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+
+            @include mobile-only {
+                justify-content: space-between;
+            }
+
+            @include tablet-only {
+                justify-content: space-around;
+            }
+
+            @include desktop-only {
+                justify-content: center;
+            }
 
             @include like;
         }
@@ -205,17 +240,34 @@
 
 @mixin menu-dish {
     background: #f9f9f9;
-    padding: 0 30px;
-    max-width: 500px;
+    padding: 20px;
+
+    @include desktop-only {
+        flex-grow: 3;
+    }
 }
 
 @mixin menu-dish-title {
     display: flex;
     flex-direction: column;
-    margin: 20px 10px;
+    width: 420px;
+    margin: auto;
+
+    @include mobile-only {
+        margin: 20px 10px;
+        width: auto;
+    }
+
+    @include tablet-only {
+        width: 500px;
+    }
+
+    @include desktop-only {
+        width: 420px;
+    }
 
     h3 {
-        margin: 10px 0;
+        margin: 10px 0 2px;
         font-size: 1.1em;
         font-weight: 300;
         text-transform: uppercase;
@@ -231,95 +283,30 @@
 @mixin menu-dish-item {
     opacity: 0;
     display: flex;
-    background: #fff;
+    background-color: #fff;
     border-radius: 20px;
     padding: 0;
     margin: 20px auto;
     overflow: hidden;
+    box-sizing: border-box;
     @include button-boxShadow($boxShadow);
 
-
-    &>a {
-        text-decoration: none;
-        color: initial;
+    @include mobile-only {
         width: 100%;
-        margin: 10px 20px;
     }
 
-    a>div {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+    @include tablet-only {
+        width: 500px;
     }
 
-    a:focus+.checkbox {
-        transform: scaleX(1);
-        width: 100px;
-        transition: all 1s ease-in-out;
-        animation-fill-mode: forwards;
+    @include desktop-only {
+        width: 420px;
     }
-
-    .checkbox {
-        transition: all 1s ease-in-out;
-        width: 0;
-        background: $color-tertiary;
-        border-radius: 0 20px 20px 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-
-        input {
-            display: flex;
-            appearance: none;
-            width: 25px;
-            height: 25px;
-            background: #FFF;
-            border-radius: 50%;
-        }
-
-        input::after {
-            font-family: "Font Awesome 5 Free";
-            content: '\f00c';
-            color: $color-tertiary;
-            font-weight: 900;
-            font-size: initial;
-            margin: auto;
-        }
-
-    }
-
-    &__description {
-        overflow: hidden;
-
-        p {
-            margin: 1px;
-            font-weight: 300;
-            cursor: pointer;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        h4 {
-            text-overflow: ellipsis;
-            overflow: hidden;
-            margin: 1px;
-            white-space: nowrap;
-        }
-    }
-
-    &__price {
-        margin: 0;
-        align-self: flex-end;
-        font-weight: 600;
-    }
-
-
 }
 
 @mixin menu-dish-item-animation {
     animation: slidein 500ms linear 1 forwards;
+    animation-delay: 900ms;
 
     @keyframes slidein {
         0% {
