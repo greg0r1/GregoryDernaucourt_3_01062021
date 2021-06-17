@@ -11,7 +11,7 @@
     width: 100%;
     text-align: center;
     line-height: 500px;
-    animation: 3s display100 3s linear forwards;
+    animation: 3s display100 3s cubic-bezier(0.63, 0.01, 1, 1) forwards;
 
     .loader {
         width: 50px;
@@ -22,14 +22,15 @@
     }
 
     span {
-        animation: 1s faderText 2s linear forwards;
+        animation: 2s faderText 2s linear forwards;
         animation-iteration-count: 1;
+        margin: 20px;
     }
 
     ;
 
     .loader-quart {
-        border-radius: 50px;
+        border-radius: 50%;
         border: 6px solid rgba(255, 255, 255, 0.4);
 
         &::after {
@@ -39,10 +40,10 @@
             left: -6px;
             bottom: -6px;
             right: -6px;
-            border-radius: 50px;
+            border-radius: 50%;
             border: 6px solid transparent;
             border-top-color: $color-primary;
-            animation: spin 2s cubic-bezier(0.31, 0.61, 0.4, 0.68) 0s infinite;
+            animation: spin 1s linear 0s infinite;
         }
     }
 
@@ -52,12 +53,10 @@
 @keyframes spin {
     0% {
         transform: rotate(0deg);
-        opacity: 1;
     }
 
     100% {
         transform: rotate(360deg);
-        opacity: 0;
     }
 
 

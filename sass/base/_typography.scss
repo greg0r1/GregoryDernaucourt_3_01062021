@@ -5,17 +5,15 @@ body {
     line-height: 1.7;
 }
 
-h1,
-.footer .nav__title {
+.header__logo,
+.footer .nav__title,
+.menu h1 {
     font-family: 'Shrikhand', cursive;
-    font-style: italic;
     letter-spacing: 1px;
-}
-
-h1 {
     font-size: 1.9em;
 }
 
+h1,
 h2 {
     font-weight: 700;
     font-size: 1.4em;

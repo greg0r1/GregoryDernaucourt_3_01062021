@@ -175,20 +175,20 @@
 }
 
 @mixin background-image-1 {
-    background: no-repeat center/100% url('/public/img/restaurants/small/menu-aLaFrancaise.jpg');
+    background: no-repeat center/100% url('../../public/img/restaurants/medium/menu-aLaFrancaise.jpg');
     background-position-y: 0;
 }
 
 @mixin background-image-2 {
-    background: no-repeat center/100% url('/public/img/restaurants/small/menu-laNoteEnchantee.jpg');
+    background: no-repeat center/100% url('../../public/img/restaurants/medium/menu-laNoteEnchantee.jpg');
 }
 
 @mixin background-image-3 {
-    background: no-repeat center/100% url('/public/img/restaurants/small/menu-laPaletteDuGout.jpg');
+    background: no-repeat center/100% url('../../public/img/restaurants/medium/menu-laPaletteDuGout.jpg');
 }
 
 @mixin background-image-4 {
-    background: no-repeat center/100% url('/public/img/restaurants/small/menu-leDeliceDesSens.jpg');
+    background: no-repeat center/100% url('../../public/img/restaurants/medium/menu-leDeliceDesSens.jpg');
 }
 
 @mixin menu {

@@ -54,7 +54,7 @@
 
             .focus:focus+.checkbox {
                 width: 100px;
-                transition: all 1s ease-in-out;
+                transition: width 1s ease-in-out;
                 animation-fill-mode: forwards;
             }
 
@@ -68,23 +68,28 @@
                 justify-content: center;
                 overflow: hidden;
                 margin: 0;
+                position: relative;
 
                 input {
                     display: flex;
                     appearance: none;
+                    -webkit-appearance: none;
                     width: 25px;
                     height: 25px;
                     background: #FFF;
                     border-radius: 50%;
                 }
 
-                input::after {
-                    font-family: "Font Awesome 5 Free";
-                    content: '\f00c';
+                .fas {
                     color: $color-tertiary;
-                    font-weight: 900;
-                    font-size: initial;
-                    margin: auto;
+                    font-size: 0.8em;
+                    width: 25px;
+                    height: 25px;
+                    background-color: #FFF;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
 
             }
