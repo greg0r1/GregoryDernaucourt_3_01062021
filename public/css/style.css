@@ -109,14 +109,14 @@ h4 {
 .step-btn, .step-btn:hover {
   cursor: default;
 }
-.step-btn:hover {
+.step-btn:hover, .step-btn:focus {
   box-shadow: 0px 6px 10px #afafaf;
   background: #f4eefc;
   transform: scale(1.05);
   font-weight: 500;
   transition: all 500ms cubic-bezier(0.17, 0.26, 0.29, 0.98);
 }
-.step-btn:hover .fas {
+.step-btn:hover .fas, .step-btn:focus .fas {
   color: #9356DC;
 }
 .step-btn .fas {
@@ -158,7 +158,7 @@ h4 {
   width: 100%;
   text-align: center;
   line-height: 500px;
-  animation: 3s display100 3s cubic-bezier(0.63, 0.01, 1, 1) forwards;
+  animation: 3s display100 2s cubic-bezier(0.63, 0.01, 1, 1) forwards;
 }
 .loader-container .loader {
   width: 50px;
@@ -168,7 +168,7 @@ h4 {
   position: relative;
 }
 .loader-container span {
-  animation: 2s faderText 2s linear forwards;
+  animation: 2s faderText 1s linear forwards;
   animation-iteration-count: 1;
   margin: 20px;
 }
@@ -460,6 +460,8 @@ h4 {
   -webkit-text-fill-color: transparent;
   cursor: pointer;
   animation: like-anim 1s ease-in forwards;
+  text-decoration: none;
+  -webkit-appearance: none;
 }
 @keyframes like-anim {
   from {
@@ -554,6 +556,8 @@ h4 {
   -webkit-text-fill-color: transparent;
   cursor: pointer;
   animation: like-anim 1s ease-in forwards;
+  text-decoration: none;
+  -webkit-appearance: none;
 }
 @keyframes like-anim {
   from {
@@ -862,6 +866,8 @@ h4 {
   -webkit-text-fill-color: transparent;
   cursor: pointer;
   animation: like-anim 1s ease-in forwards;
+  text-decoration: none;
+  -webkit-appearance: none;
 }
 @keyframes like-anim {
   from {

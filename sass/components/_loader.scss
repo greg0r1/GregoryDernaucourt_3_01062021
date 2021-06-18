@@ -11,7 +11,7 @@
     width: 100%;
     text-align: center;
     line-height: 500px;
-    animation: 3s display100 3s cubic-bezier(0.63, 0.01, 1, 1) forwards;
+    animation: 3s display100 2s cubic-bezier(0.63, 0.01, 1, 1) forwards;
 
     .loader {
         width: 50px;
@@ -22,7 +22,7 @@
     }
 
     span {
-        animation: 2s faderText 2s linear forwards;
+        animation: 2s faderText 1s linear forwards;
         animation-iteration-count: 1;
         margin: 20px;
     }
