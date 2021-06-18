@@ -52,11 +52,13 @@
     filter: brightness(1);
     transition: filter 800ms ease-in-out;
 
-    &:hover {
+    &:hover,
+    &:focus {
         color: #FFF;
         @include button-boxShadow(1);
         filter: brightness(1.2);
         transition: filter 300ms linear;
+        outline-style: none;
     }
 
     p {
@@ -79,6 +81,9 @@
 
     @include mobile-only {
         width: 100%;
+        max-width: 420px;
+        padding: 25px 30px;
+        margin: 10px 0 10px 20px;
     }
 
     @include tablet-only {
@@ -99,6 +104,7 @@
         transform: scale(1.05);
         font-weight: 500;
         transition: all 500ms cubic-bezier(0.17, 0.26, 0.29, 0.98);
+        outline-style: none;
 
         .fas {
             color: $color-primary;
@@ -112,8 +118,8 @@
     }
 
     span {
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         background: #9356dc;
         color: #FFF;
         border-radius: 100%;
@@ -125,8 +131,16 @@
         justify-content: center;
         align-items: center;
         top: 30%;
-        left: -20px;
+        left: -15px;
         cursor: pointer;
+        font-size: 0.8em;
+
+        @include mobile-only {
+            width: 20px;
+            height: 20px;
+            top: 38%;
+            margin: 0 5px;
+        }
     }
 
     p {
@@ -157,6 +171,7 @@
         animation: like-anim 1s ease-in forwards;
         text-decoration: none;
         -webkit-appearance: none;
+        outline-style: none;
     }
 
     @keyframes like-anim {
@@ -184,14 +199,17 @@
 
 @mixin background-image-2 {
     background: no-repeat center/100% url('../../public/img/restaurants/medium/menu-laNoteEnchantee.jpg');
+    background-position-y: 0;
 }
 
 @mixin background-image-3 {
     background: no-repeat center/100% url('../../public/img/restaurants/medium/menu-laPaletteDuGout.jpg');
+    background-position-y: 0;
 }
 
 @mixin background-image-4 {
     background: no-repeat center/100% url('../../public/img/restaurants/medium/menu-leDeliceDesSens.jpg');
+    background-position-y: 0;
 }
 
 @mixin menu {
