@@ -1,8 +1,19 @@
 body {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.2em;
     font-weight: 400;
     line-height: 1.7;
+
+    @include mobile-only() {
+        font-size: 1.2em;
+    }
+
+    @include tablet-only() {
+        font-size: 1.1em;
+    }
+
+    @include desktop-only() {
+        font-size: 1em;
+    }
 }
 
 .header__logo,

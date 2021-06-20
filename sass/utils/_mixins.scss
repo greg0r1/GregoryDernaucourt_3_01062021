@@ -90,14 +90,9 @@
         width: 300px;
     }
 
-
-    &,
-    &:hover {
-        cursor: default;
-    }
-
     &:hover,
     &:focus {
+        cursor: default;
         @include button-boxShadow(1);
 
         background: color.scale($color-primary, $lightness: 90%);
@@ -194,22 +189,34 @@
 
 @mixin background-image-1 {
     background: no-repeat center/100% url('../../public/img/restaurants/medium/menu-aLaFrancaise.jpg');
-    background-position-y: 0;
+
+    @include mobile-only() {
+        background-position-y: 0;
+    }
 }
 
 @mixin background-image-2 {
     background: no-repeat center/100% url('../../public/img/restaurants/medium/menu-laNoteEnchantee.jpg');
-    background-position-y: 0;
+
+    @include mobile-only() {
+        background-position-y: 0;
+    }
 }
 
 @mixin background-image-3 {
     background: no-repeat center/100% url('../../public/img/restaurants/medium/menu-laPaletteDuGout.jpg');
-    background-position-y: 0;
+
+    @include mobile-only() {
+        background-position-y: 0;
+    }
 }
 
 @mixin background-image-4 {
     background: no-repeat center/100% url('../../public/img/restaurants/medium/menu-leDeliceDesSens.jpg');
-    background-position-y: 0;
+
+    @include mobile-only() {
+        background-position-y: 0;
+    }
 }
 
 @mixin menu {
@@ -285,6 +292,8 @@
 
     @include desktop-only {
         width: 420px;
+        margin: 0;
+        padding: 0 0 0 20px;
     }
 
     h3 {
@@ -321,7 +330,8 @@
     }
 
     @include desktop-only {
-        width: 420px;
+        width: 500px;
+        margin: 20px 0;
     }
 }
 

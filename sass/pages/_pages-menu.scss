@@ -1,5 +1,3 @@
-@use "sass:math";
-
 .menu {
     background: #f9f9f9;
     @include menu;
@@ -69,16 +67,6 @@
                 overflow: hidden;
                 margin: 0;
                 position: relative;
-
-                input {
-                    display: flex;
-                    appearance: none;
-                    -webkit-appearance: none;
-                    width: 25px;
-                    height: 25px;
-                    background: #FFF;
-                    border-radius: 50%;
-                }
 
                 .fas {
                     color: $color-tertiary;
